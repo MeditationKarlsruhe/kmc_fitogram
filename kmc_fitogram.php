@@ -40,7 +40,7 @@ class KmcFitogram
 
   function settingsLink(array $links)
   {
-    $settingsLink = '<a href="admin.php?page=fitogram">Einstellungen</a>';
+    $settingsLink = '<a href="admin.php?page=kmc_fitogram">Einstellungen</a>';
     array_push($links, $settingsLink);
     return $links;
   }
