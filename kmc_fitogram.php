@@ -8,48 +8,26 @@ Author: Felix
 
 defined('ABSPATH') or die;
 
-// require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
-// require_once 'eventProvider.php';
+require_once dirname(__FILE__) . '/vendor/autoload.php';
+
+Includes\Init::registerServices();
+
+// class KmcFitogram
+// {
+//   public $pluginName;
+
+//   public function __construct()
+//   {
+//     $this->pluginName = plugin_basename(__FILE__);
+//   }
+//   function register()
+//   {
+//    
+//   }
 
 
-class KmcFitogram
-{
-  public $pluginName;
-
-  public function __construct()
-  {
-    $this->pluginName = plugin_basename(__FILE__);
-  }
-  function register()
-  {
-    add_action('admin_menu', array($this, 'addAdminPages'));
-    add_filter("plugin_action_links_$this->pluginName", array($this, 'settingsLink'));
-  }
-  function addAdminPages()
-  {
-    add_menu_page(
-      'KMC Fitogram',
-      'KMC Fitogram',
-      'manage_options',
-      'kmc_fitogram',
-      array($this, 'adminIndex'),
-      'dashicons-store',
-      110
-    );
-  }
-
-  function settingsLink(array $links)
-  {
-    $settingsLink = '<a href="admin.php?page=kmc_fitogram">Einstellungen</a>';
-    array_push($links, $settingsLink);
-    return $links;
-  }
-  function adminIndex()
-  {
-    require_once plugin_dir_path(__FILE__) . '/templates/admin.php';
-  }
-
-}
+//  
+// }
 
 // Add shortcode function here
 // function fitogramShortcode($atts)
@@ -117,7 +95,7 @@ class KmcFitogram
 
 // add_shortcode('fitogram', 'fitogramShortcode');
 
-$kmcFiotgram = new KmcFitogram();
-$kmcFiotgram->register();
+// $kmcFiotgram = new KmcFitogram();
+// $kmcFiotgram->register();
 
 // register_activation_hook(__FILE__, array($kmcFiotgram, 'registerActivationHook'));

@@ -1,0 +1,21 @@
+{
+    "name": "kmc/fitogram",
+    "type": "project",
+    "license": "GPL",
+    "autoload": {
+        "psr-4": {
+            "Includes\\": "includes",
+            "Includes\\Base": "includes/base",
+            "Includes\\Pages\\": "includes/pages",
+            "Templates\\": "templates"
+        }
+    },
+    "authors": [
+        {
+            "name": "Felix Ruthenberg",
+            "email": "felix.ruthenberg@outlook.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
