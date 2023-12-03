@@ -1,0 +1,11 @@
+{
+  "require": {
+    "jms/serializer": "^3.28",
+    "doctrine/annotations": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fitogram\\": ""
+    }
+  }
+}

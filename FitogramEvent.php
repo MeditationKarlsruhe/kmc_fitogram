@@ -1,0 +1,44 @@
+<?php
+
+class FitogramEvent {
+    public string $id;
+    public int $integerId;
+    public int $numericId;
+    public string $providerId;
+    public string $eventGroupId;
+    public string $eventSerieId;
+    public \DateTime $originalStart;
+    public \DateTime $start;
+    public \DateTime $end;
+    public string $timeZoneId;
+    public string $name;
+    public string $color;
+    public ?string $notes;
+    public bool $cancelled;
+    public ?string $cancellationReason;
+    public bool $archived;
+    public ?object $archivedDate;
+    public int $seats;
+    public bool $public;
+    public string $type;
+    public string $categoryType;
+    public bool $waitingListEnabled;
+    public string $locationId;
+    public array $trainerIds;
+    public array $resourceIds;
+    public bool $multipleBookingEnabled;
+    public bool $publicBookingEnabled;
+    public ?\DateTime $publicBookingWindowStart;
+    public ?\DateTime $publicBookingWindowEnd;
+    public bool $publicCancellationEnabled;
+    public ?\DateTime $publicCancellationWindowStart;
+    public ?\DateTime $publicCancellationWindowEnd;
+    public TimeSpan $publicCancellationRefundEnd;
+    public ?object $deleted;
+    public \DateTime $timeStamp;
+    public bool $livestream;
+    public ?string $virtualClassUrl;
+    public ?string $liveStreamId;
+    public int $categoryId;
+    public bool $editable;
+}
