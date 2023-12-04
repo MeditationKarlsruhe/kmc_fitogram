@@ -5,7 +5,7 @@
     "autoload": {
         "psr-4": {
             "Includes\\": "includes",
-            "Includes\\Base": "includes/base",
+            "Includes\\Base\\": "includes/base",
             "Includes\\Pages\\": "includes/pages",
             "Templates\\": "templates"
         }
