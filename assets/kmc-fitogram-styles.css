@@ -1,0 +1,30 @@
+.kmc-fitogram-events {
+  .event-group {
+    margin-bottom: 150px;
+  }
+  .event-group-image {
+    width: 66%;
+    margin: 0 auto 50px auto;
+  }
+  .event-group-details {
+    display: flex;
+  }
+  .left {
+   padding-right: 30px;
+  }
+  .right {
+    min-width: 200px;
+  }
+  .events {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .event {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    border: 1px solid;
+    padding: 10px;
+  }
+ 
+}

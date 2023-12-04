@@ -5,6 +5,8 @@
     "autoload": {
         "psr-4": {
             "Includes\\": "includes",
+            "Includes\\Api\\": "includes/api",            
+            "Includes\\Api\\Callbacks\\": "includes/api/callbacks",
             "Includes\\Base\\": "includes/base",
             "Includes\\Pages\\": "includes/pages",
             "Templates\\": "templates"
