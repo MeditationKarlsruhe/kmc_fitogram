@@ -75,7 +75,7 @@ class SettingsApi
             register_setting(
                 $setting["option_group"],
                 $setting["option_name"],
-                (isset($setting["callback"]) ? $setting["callback"] : '')
+                $setting["callback"] ?? ''
             );
         }
 
@@ -83,7 +83,7 @@ class SettingsApi
             add_settings_section(
                 $section["id"],
                 $section["title"],
-                (isset($section["callback"]) ? $section["callback"] : ''),
+                $section["callback"] ?? '',
                 $section["page"]
             );
         }
@@ -92,10 +92,10 @@ class SettingsApi
             add_settings_field(
                 $field["id"],
                 $field["title"],
-                (isset($field["callback"]) ? $field["callback"] : ''),
+                $field["callback"] ?? '',
                 $field["page"],
                 $field["section"],
-                (isset($field["args"]) ? $field["args"] : '')
+                $field["args"] ?? ''
             );
         }
     }
@@ -104,7 +104,6 @@ class SettingsApi
     {
         foreach ($this->shortCodes as $shortCode) {
             add_shortcode($shortCode["name"], $shortCode["callback"]);
-
         }
     }
 }
