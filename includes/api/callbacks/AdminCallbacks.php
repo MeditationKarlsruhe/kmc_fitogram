@@ -37,9 +37,17 @@ class AdminCallbacks extends BaseController
         return $input;
     }
 
-    public function providerId()
+    public function fitogramProviderId()
     {
-        $value = esc_attr(get_option('provider_id'));
-        echo '<input type="text" class="regular-text" name="provider_id" value="' . $value . '" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">';
+        $value = esc_attr(get_option('fitogram_provider_id'));
+        echo '<input type="text" class="regular-text" name="fitogram_provider_id" value="' . $value . '"
+            placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" id="fitogram_provider_id">';
+    }
+
+    public function fitogramStudioName()
+    {
+        $value = esc_attr(get_option('fitogram_studio_name'));
+        echo '<input type="text" class="regular-text" name="fitogram_studio_name" value="' . $value . '"
+            id="fitogram_studio_name">';
     }
 }

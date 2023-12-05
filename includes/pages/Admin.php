@@ -55,7 +55,12 @@ class Admin extends BaseController
         return [
             [
                 'option_group' => 'kmc_fitogram_options_group',
-                'option_name' => 'provider_id',
+                'option_name' => 'fitogram_provider_id',
+                'callback' => [$this->adminCallbacks, 'defaultOptionGroup']
+            ],
+            [
+                'option_group' => 'kmc_fitogram_options_group',
+                'option_name' => 'fitogram_studio_name',
                 'callback' => [$this->adminCallbacks, 'defaultOptionGroup']
             ]
         ];
@@ -76,13 +81,23 @@ class Admin extends BaseController
     {
         return [
             [
-                'id' => 'provider_id',
+                'id' => 'fitogram_provider_id',
                 'title' => 'Fitogram Provider ID',
-                'callback' => [$this->adminCallbacks, 'providerId'],
+                'callback' => [$this->adminCallbacks, 'fitogramProviderId'],
                 'page' => 'kmc_fitogram',
                 'section' => 'kmc_fitogram_admin_index',
                 'args' => [
-                    'label_for' => 'fitogramId',
+                    'label_for' => 'fitogram_provider_id',
+                ],
+            ],
+            [
+                'id' => 'fitogram_studio_name',
+                'title' => 'Fitogram Studio Name',
+                'callback' => [$this->adminCallbacks, 'fitogramStudioName'],
+                'page' => 'kmc_fitogram',
+                'section' => 'kmc_fitogram_admin_index',
+                'args' => [
+                    'label_for' => 'fitogram_studio_name',
                 ],
             ]
         ];

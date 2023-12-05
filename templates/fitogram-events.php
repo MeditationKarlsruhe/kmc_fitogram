@@ -2,20 +2,20 @@
 
     <?php foreach ($eventGroups as $eventGroup): ?>
         <div class="event-group">
-            <div class="event-group-header">
+            <div>
                 <?php if ($showImage): ?>
                     <div class="event-group-image">
                         <img alt="" src='<?php echo $eventGroup->imageUrl; ?>' />
                     </div>
                 <?php endif; ?>
-                <h2 class="event-group-name">
+                <h2>
                     <?php echo $eventGroup->name; ?>
                 </h2>
             </div>
 
             <div class="event-group-details">
                 <div class="left">
-                    <div class="event-group-content">
+                    <div>
                         <?php echo $eventGroup->content; ?>
                     </div>
                     <div class="events">
@@ -49,7 +49,7 @@
                                     <span class="maxbutton-4-container mb-container">
                                         <a class="maxbutton-4 maxbutton maxbutton-anmeldung" target="_blank"
                                             title="Anmeldung zum Kurs" rel="noopener"
-                                            href='https://widget.fitogram.pro/menlha-zentrum/?w=/event/<?php echo $event->id; ?>'>
+                                            href="<?php echo $event->registrationLink; ?>">
                                             <span class="mb-text">Anmeldung</span>
                                         </a>
                                     </span>
@@ -58,7 +58,7 @@
                         <?php endforeach; ?>
                     </div>
                 </div>
-                
+
                 <div class="right">
                     <div class="products">
                         <?php foreach ($eventGroup->events[0]->products as $product): ?>
