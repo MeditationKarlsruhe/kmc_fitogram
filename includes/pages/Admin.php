@@ -5,114 +5,86 @@ namespace Includes\Pages;
 use Includes\Api\SettingsApi;
 use Includes\Base\BaseController;
 use Includes\Api\Callbacks\AdminCallbacks;
-use Includes\Base\FitogramEventsController;
 
 class Admin extends BaseController
 {
-
-    public $settings;
-    public $callbacks;
-    public $fitoGramEventsController;
+    public SettingsApi $settingsApi;
+    public AdminCallbacks $adminCallbacks;
 
     public function register()
     {
-        $this->settings = new SettingsApi();
-        $this->callbacks = new AdminCallbacks();
-        $this->fitoGramEventsController = new FitogramEventsController();
+        $this->settingsApi = new SettingsApi();
+        $this->adminCallbacks = new AdminCallbacks();
 
-        $this->settings
-            ->addPages($this->getPages())
+        $this->settingsApi
+            ->setPages($this->getPages())
             ->setSettings($this->getSettings())
             ->setSections($this->getSections())
             ->setFields($this->getFields())
+            ->setShortCodes($this->getShortCodes())
             ->register();
-
-        $this->addFitogramEventsShortCode();
     }
 
-    private function addFitogramEventsShortCode()
+    private function getShortCodes()
     {
-        add_shortcode('fitogram-events', array($this, 'fitogramEventsShortCode'));
-    }
-
-    public function fitogramEventsShortCode(array $args)
-    {
-        ob_start();
-        $color = $args['color'];
-        $showImage = ($args['show-image'] ?? 'true') === 'true';
-
-        $eventGroups = $this->fitoGramEventsController->getEvents($color);
-        require_once "$this->pluginPath/templates/fitogram-events.php";
-        return ob_get_clean();
+        return [
+            [
+                'name' => 'fitogram-events',
+                'callback' => [$this->adminCallbacks, 'fitogramEventsShortCode']
+            ]
+        ];
     }
 
     public function getPages()
     {
-        return array(
-            array(
+        return [
+            [
                 'page_title' => 'KMC Fitogram',
                 'menu_title' => 'KMC Fitogram',
                 'capability' => 'manage_options',
                 'menu_slug' => 'kmc_fitogram',
-                'callback' => array($this->callbacks, 'adminDashboard'),
+                'callback' => [$this->adminCallbacks, 'adminDashboard'],
                 'icon_url' => 'dashicons-schedule',
                 'position' => 110
-            )
-        );
+            ]
+        ];
     }
 
     public function getSettings()
     {
-        return array(
-            array(
+        return [
+            [
                 'option_group' => 'kmc_fitogram_options_group',
                 'option_name' => 'provider_id',
-                'callback' => array($this->callbacks, 'defaultOptionGroup')
-            ),
-            array(
-                'option_group' => 'kmc_fitogram_options_group',
-                'option_name' => 'general_event_layout',
-                'callback' => array($this->callbacks, 'defaultOptionGroup')
-            )
-        );
+                'callback' => [$this->adminCallbacks, 'defaultOptionGroup']
+            ]
+        ];
     }
 
     public function getSections()
     {
-        return array(
-            array(
+        return [
+            [
                 'id' => 'kmc_fitogram_admin_index',
                 'title' => 'Einstellungen',
                 'page' => 'kmc_fitogram'
-            )
-        );
+            ]
+        ];
     }
 
     public function getFields()
     {
-        return array(
-            array(
+        return [
+            [
                 'id' => 'provider_id',
                 'title' => 'Fitogram Provider ID',
-                'callback' => array($this->callbacks, 'providerId'),
+                'callback' => [$this->adminCallbacks, 'providerId'],
                 'page' => 'kmc_fitogram',
                 'section' => 'kmc_fitogram_admin_index',
-                'args' => array(
+                'args' => [
                     'label_for' => 'fitogramId',
-                    'class' => 'example-class'
-                ),
-            ),
-            array(
-                'id' => 'general_event_layout',
-                'title' => 'Allgemeines Event Layout',
-                'callback' => array($this->callbacks, 'generalEventLayout'),
-                'page' => 'kmc_fitogram',
-                'section' => 'kmc_fitogram_admin_index',
-                'args' => array(
-                    'label_for' => 'general_event_layout',
-                    'class' => 'example-class'
-                )
-            ),
-        );
+                ],
+            ]
+        ];
     }
 }

@@ -6,20 +6,27 @@ namespace Includes\Api;
 
 class SettingsApi
 {
-    public $adminPages = array();
-    public $settings = array();
-
-    public $sections = array();
-
-    public $fields = array();
+    public $adminPages = [];
+    public $settings = [];
+    public $sections = [];
+    public $fields = [];
+    public $shortCodes = [];
 
     public function register()
     {
-        add_action('admin_menu', array($this, 'addAdminMenu'));
-        add_action('admin_init', array($this, 'registerCustomFields'));
+        add_action('admin_menu', [$this, 'addAdminMenu']);
+        add_action('admin_init', [$this, 'registerCustomFields']);
+        add_action('init', [$this, 'registerShortCodes']);
     }
 
-    public function addPages(array $pages)
+    public function setShortCodes(array $shortCodes)
+    {
+        $this->shortCodes = $shortCodes;
+
+        return $this;
+    }
+
+    public function setPages(array $pages)
     {
         $this->adminPages = $pages;
 
@@ -93,4 +100,11 @@ class SettingsApi
         }
     }
 
+    public function registerShortCodes()
+    {
+        foreach ($this->shortCodes as $shortCode) {
+            add_shortcode($shortCode["name"], $shortCode["callback"]);
+
+        }
+    }
 }

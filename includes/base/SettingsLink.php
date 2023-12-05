@@ -6,7 +6,7 @@ class SettingsLink extends BaseController
 {
     public function register()
     {
-        add_filter('plugin_action_links_' . $this->pluginName, array($this, 'addSettingsLink'));
+        add_filter('plugin_action_links_' . $this->pluginName, [$this, 'addSettingsLink']);
     }
 
     public function addSettingsLink(array $links)

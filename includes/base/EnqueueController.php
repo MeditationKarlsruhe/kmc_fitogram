@@ -7,11 +7,11 @@ class EnqueueController extends BaseController
 {
     public function register()
     {
-        add_action('wp_enqueue_scripts', array($this, 'enqueue'));
+        add_action('wp_enqueue_scripts', [$this, 'enqueue']);
     }
 
-    function enqueue()
+    public function enqueue()
     {
-        wp_enqueue_style('kmc_fitogram_styles', $this->pluginUrl."assets/kmc-fitogram-styles.css");
+        wp_enqueue_style('kmc-fitogram-styles', $this->pluginUrl."assets/kmc-fitogram-styles.css");
     }
 }

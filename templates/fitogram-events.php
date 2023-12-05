@@ -1,24 +1,26 @@
 <div class="kmc-fitogram-events">
-    <?php foreach ($eventGroups as $eventGroup) { ?>
 
+    <?php foreach ($eventGroups as $eventGroup): ?>
         <div class="event-group">
             <div class="event-group-header">
-                <?php if ($showImage) { ?>
+                <?php if ($showImage): ?>
                     <div class="event-group-image">
-                        <img src='<?php echo $eventGroup->imageUrl; ?>' />
+                        <img alt="" src='<?php echo $eventGroup->imageUrl; ?>' />
                     </div>
-                <?php } ?>
+                <?php endif; ?>
                 <h2 class="event-group-name">
                     <?php echo $eventGroup->name; ?>
                 </h2>
             </div>
+
             <div class="event-group-details">
                 <div class="left">
                     <div class="event-group-content">
                         <?php echo $eventGroup->content; ?>
                     </div>
-                    <div class=" events">
-                        <?php foreach ($eventGroup->events as $event) {
+                    <div class="events">
+                        <?php foreach ($eventGroup->events as $event): ?>
+                            <?php
                             $dateFormatter = new IntlDateFormatter(
                                 'de_DE',
                                 IntlDateFormatter::FULL,
@@ -33,7 +35,8 @@
                                 IntlDateFormatter::FULL,
                                 $event->timeZoneId
                             );
-                            $timeFormatter->setPattern("HH:mm"); ?>
+                            $timeFormatter->setPattern("HH:mm");
+                            ?>
                             <div class="event">
                                 <span>
                                     <?php echo $dateFormatter->format(strtotime($event->start)); ?>
@@ -42,25 +45,23 @@
                                     <?php echo $timeFormatter->format(strtotime($event->start)); ?> -
                                     <?php echo $timeFormatter->format(strtotime($event->end)); ?>
                                 </span>
-
                                 <span class="mb-center maxbutton-4-center registration-link">
                                     <span class="maxbutton-4-container mb-container">
                                         <a class="maxbutton-4 maxbutton maxbutton-anmeldung" target="_blank"
                                             title="Anmeldung zum Kurs" rel="noopener"
-                                            href='https://widget.fitogram.pro/menlha-zentrum/?w=/event/}<?php echo $event->id; ?>'>
+                                            href='https://widget.fitogram.pro/menlha-zentrum/?w=/event/<?php echo $event->id; ?>'>
                                             <span class="mb-text">Anmeldung</span>
                                         </a>
                                     </span>
                                 </span>
-
                             </div>
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
+                
                 <div class="right">
                     <div class="products">
-                        <?php foreach ($eventGroup->events[0]->products as $product) { ?>
-
+                        <?php foreach ($eventGroup->events[0]->products as $product): ?>
                             <div class="product">
                                 <strong>
                                     <?php echo $product->name ?>
@@ -70,9 +71,8 @@
                                 echo number_format($product->amount, 2)
                                     . " " . $product->currencySymbol
                                     . " / " . $product->displaySalesPriceRhythm; ?>
-
                             </div>
-                        <?php } ?>
+                        <?php endforeach; ?>
                         <div class="product">
                             <a href="/treuekarten/">Zu den Details</a>
                         </div>
@@ -80,7 +80,5 @@
                 </div>
             </div>
         </div>
-
-
-    <?php } ?>
+    <?php endforeach; ?>
 </div>

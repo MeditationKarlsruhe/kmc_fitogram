@@ -2,8 +2,31 @@
 
 namespace Includes\Api\Callbacks;
 
-class AdminCallbacks extends \Includes\Base\BaseController
+use Includes\Base\BaseController;
+use Includes\Base\FitogramEventsController;
+
+class AdminCallbacks extends BaseController
 {
+    private FitogramEventsController $fitogramEventsController;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->fitogramEventsController = new FitogramEventsController();
+    }
+
+    public function fitogramEventsShortCode(array $args)
+    {
+        ob_start();
+
+        $color = $args['color'];
+        $showImage = ($args['show-image'] ?? 'true') === 'true';
+        $eventGroups = $this->fitogramEventsController->getEventGroups($color);
+
+        require_once "$this->pluginPath/templates/fitogram-events.php";
+
+        return ob_get_clean();
+    }
+
     public function adminDashboard()
     {
         return require_once "$this->pluginPath/templates/admin.php";
@@ -14,27 +37,9 @@ class AdminCallbacks extends \Includes\Base\BaseController
         return $input;
     }
 
-    public function alecadddAdminSection()
-    {
-        echo 'Check this beautiful section!';
-    }
-
     public function providerId()
     {
         $value = esc_attr(get_option('provider_id'));
         echo '<input type="text" class="regular-text" name="provider_id" value="' . $value . '" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">';
-    }
-
-    public function generalEventLayout()
-    {
-        $value = esc_attr(get_option('general_event_layout'));
-        wp_editor(
-            $value,
-            'fitogram_id',
-            array(
-                'textarea_name' => 'general_event_layout',
-                'textarea_rows' => 10,
-            )
-        );
     }
 }
