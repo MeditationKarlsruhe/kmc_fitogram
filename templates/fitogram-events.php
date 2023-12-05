@@ -43,7 +43,7 @@
                                     <?php echo $timeFormatter->format(strtotime($event->end)); ?>
                                 </span>
 
-                                <span class="mb-center maxbutton-4-center">
+                                <span class="mb-center maxbutton-4-center registration-link">
                                     <span class="maxbutton-4-container mb-container">
                                         <a class="maxbutton-4 maxbutton maxbutton-anmeldung" target="_blank"
                                             title="Anmeldung zum Kurs" rel="noopener"
@@ -73,6 +73,9 @@
 
                             </div>
                         <?php } ?>
+                        <div class="product">
+                            <a href="/treuekarten/">Zu den Details</a>
+                        </div>
                     </div>
                 </div>
             </div>
