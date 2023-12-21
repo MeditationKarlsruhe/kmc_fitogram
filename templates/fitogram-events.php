@@ -14,69 +14,48 @@
             </div>
 
             <div class="event-group-details">
-                <div class="left">
-                    <div>
-                        <?php echo $eventGroup->content; ?>
-                    </div>
-                    <div class="events">
-                        <?php foreach ($eventGroup->events as $event): ?>
-                            <?php
-                            $dateFormatter = new IntlDateFormatter(
-                                'de_DE',
-                                IntlDateFormatter::FULL,
-                                IntlDateFormatter::FULL,
-                                $event->timeZoneId
-                            );
-                            $dateFormatter->setPattern("EEEE, d. MMMM y");
+                <div class="content">
+                    <?php echo $eventGroup->content; ?>
+                </div>
+                <div class="events">
+                    <?php foreach ($eventGroup->events as $event): ?>
+                        <?php
+                        $dateFormatter = new IntlDateFormatter(
+                            'de_DE',
+                            IntlDateFormatter::FULL,
+                            IntlDateFormatter::FULL,
+                            $event->timeZoneId
+                        );
+                        $dateFormatter->setPattern("EEEE, d. MMMM y");
 
-                            $timeFormatter = new IntlDateFormatter(
-                                'de_DE',
-                                IntlDateFormatter::FULL,
-                                IntlDateFormatter::FULL,
-                                $event->timeZoneId
-                            );
-                            $timeFormatter->setPattern("HH:mm");
-                            ?>
-                            <div class="event">
-                                <span>
-                                    <?php echo $dateFormatter->format(strtotime($event->start)); ?>
-                                </span>
-                                <span class="time"></span>
+                        $timeFormatter = new IntlDateFormatter(
+                            'de_DE',
+                            IntlDateFormatter::FULL,
+                            IntlDateFormatter::FULL,
+                            $event->timeZoneId
+                        );
+                        $timeFormatter->setPattern("HH:mm");
+                        ?>
+                        <div class="event">
+                            <span>
+                                <?php echo $dateFormatter->format(strtotime($event->start)); ?>
+                            </span>
+                            <span class="time">
                                 <?php echo $timeFormatter->format(strtotime($event->start)); ?> -
                                 <?php echo $timeFormatter->format(strtotime($event->end)); ?>
+                            </span>
+                            <span class="registration-link">
+                                <span>
+                                    <a target="_blank" title="Anmeldung zum Kurs" rel="noopener"
+                                        href="<?php echo $event->registrationLink; ?>">
+                                        <span>Anmeldung</span>
+                                    </a>
                                 </span>
-                                <span class="registration-link">
-                                    <span>
-                                        <a target="_blank" title="Anmeldung zum Kurs" rel="noopener"
-                                            href="<?php echo $event->registrationLink; ?>">
-                                            <span>Anmeldung</span>
-                                        </a>
-                                    </span>
-                                </span>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
+                            </span>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
 
-                <div class="right">
-                    <div class="products">
-                        <?php foreach ($eventGroup->events[0]->products as $product): ?>
-                            <div class="product">
-                                <strong>
-                                    <?php echo $product->name ?>
-                                </strong>
-                                <br />
-                                <?php
-                                echo number_format($product->amount, 2)
-                                    . " " . $product->currencySymbol
-                                    . " / " . $product->displaySalesPriceRhythm; ?>
-                            </div>
-                        <?php endforeach; ?>
-                        <div class="product">
-                            <a href="/treuekarten/">Mehr Informationen zu den Schnupper- und Treuekarten</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     <?php endforeach; ?>

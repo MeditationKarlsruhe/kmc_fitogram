@@ -10,13 +10,20 @@
   }
   .event-group-details {
     display: flex;
+    flex-direction: column;
+
+    .content {
+      p {
+        line-height: 28px;
+      }
+
+      a,
+      a * {
+        color: #f2c7ac !important;
+      }
+    }
   }
-  .left {
-    padding-right: 30px;
-  }
-  .right {
-    min-width: 270px;
-  }
+
   .events {
     display: flex;
     flex-wrap: wrap;
@@ -38,11 +45,11 @@
       display: block;
       text-align: center;
 
-      >span {
+      > span {
         display: inline-block;
         margin: 0px 0px 0px 0px;
 
-        >a {
+        > a {
           position: relative;
           text-decoration: none;
           display: inline-block;
@@ -60,7 +67,7 @@
             box-shadow: 0px 0px 2px 0px #334d5c;
           }
 
-          >span {
+          > span {
             color: #ffffff;
             font-family: "Montserrat";
             font-size: 20px;
@@ -82,8 +89,5 @@
         }
       }
     }
-  }
-  .product {
-    margin-bottom: 15px;
   }
 }

@@ -22,7 +22,7 @@ class AdminCallbacks extends BaseController
         $showImage = ($args['show-image'] ?? 'true') === 'true';
         $eventGroups = $this->fitogramEventsController->getEventGroups($color);
 
-        require_once "$this->pluginPath/templates/fitogram-events.php";
+        require "$this->pluginPath/templates/fitogram-events.php";
 
         return ob_get_clean();
     }
