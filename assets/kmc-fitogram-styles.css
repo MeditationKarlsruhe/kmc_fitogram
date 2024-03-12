@@ -2,10 +2,10 @@
   .event-group {
     margin-bottom: 150px;
     font-family: "Montserrat";
-    font-size: x-large;
+    font-size: large;
   }
   .event-group-image {
-    width: 66%;
+    width: 80%;
     margin: 0 auto 50px auto;
   }
   .event-group-details {

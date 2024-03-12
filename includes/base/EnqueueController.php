@@ -12,6 +12,6 @@ class EnqueueController extends BaseController
 
     public function enqueue()
     {
-        wp_enqueue_style('kmc-fitogram-styles', $this->pluginUrl."assets/kmc-fitogram-styles.css?hash=06");
+        wp_enqueue_style('kmc-fitogram-styles', $this->pluginUrl."assets/kmc-fitogram-styles.css?hash=08");
     }
 }
