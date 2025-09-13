@@ -10,7 +10,7 @@ class FitogramEventsController extends BaseController
         $studioName = get_option('fitogram_studio_name');
 
         $response = wp_remote_get(
-            "https://kmcfitogram.azurewebsites.net/api/Events?providerId=$providerId&studioName=$studioName&color=$color", ['timeout'=>30]
+            "https://kmc-fitogram.azurewebsites.net/api/Events?providerId=$providerId&studioName=$studioName&color=$color", ['timeout'=>30]
         );
         $body = wp_remote_retrieve_body($response);
 
